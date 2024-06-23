@@ -5,8 +5,8 @@ import { apiKeyItem } from "./popup/storageItems";
 export default defineContentScript({
   matches: ['<all_urls>'],
   main() {
-    addAnswerPanel()
-    addMessageReceiver()
+    const answerPanel = addAnswerPanel()
+    addMessageReceiver(answerPanel)
   },
 });
 
@@ -22,10 +22,12 @@ const addAnswerPanel = () => {
   answerPanel.style.whiteSpace = "break-spaces"
   answerPanel.style.background = "white"
   answerPanel.style.opacity = "0.8"
+
+  return answerPanel
 }
 
-const addMessageReceiver = () => {
-  browser.runtime.onMessage.addListener((_, sender) => {
+const addMessageReceiver = (answerPanel: Element) => {
+  browser.runtime.onMessage.addListener(async (_, sender) => {
     if (browser.runtime.id !== sender.id) {
       return
     }
@@ -36,7 +38,12 @@ const addMessageReceiver = () => {
     }
 
     const text = selection.toString()
-    streamAnswer(text)
+    const textStream = await streamAnswer(text)
+
+    answerPanel.textContent = ''
+    for await (const textPart of textStream) {
+      answerPanel.textContent += textPart
+    }
   })
 }
 
@@ -53,7 +60,5 @@ const streamAnswer = async (text: string) => {
     prompt: text,
   })
 
-  for await (const textPart of textStream) {
-    console.log(textPart);
-  }
+  return textStream
 }
