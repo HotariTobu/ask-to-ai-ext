@@ -1,3 +1,12 @@
-export const apiKeyItem = storage.defineItem('local:apiKey', {
-  defaultValue: '',
-})
+export const providerIds = [
+  'openai',
+  'azure',
+  'anthropic',
+  'google',
+  'mistral',
+  'cohere',
+  'groq',
+  'perplexity',
+  'fireworks',
+] as const
+export type ProviderId = (typeof providerIds)[number]
