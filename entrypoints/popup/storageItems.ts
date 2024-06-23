@@ -10,3 +10,11 @@ export const providerIds = [
   'fireworks',
 ] as const
 export type ProviderId = (typeof providerIds)[number]
+
+type AiConfig = {
+  providerId: ProviderId,
+  apiKey: string,
+}
+export const aiConfigsItem = storage.defineItem('local:aiConfigs', {
+  defaultValue: [] as AiConfig[]
+})
