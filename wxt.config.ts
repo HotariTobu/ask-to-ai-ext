@@ -5,6 +5,7 @@ import { defineConfig } from 'wxt';
 export default defineConfig({
   manifest: {
     permissions: ['storage', 'contextMenus'],
+    default_locale: 'en',
   },
   modules: ['@wxt-dev/module-react'],
   vite: () => ({
