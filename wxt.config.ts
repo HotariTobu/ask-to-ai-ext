@@ -1,3 +1,4 @@
+import path from 'path';
 import { defineConfig } from 'wxt';
 
 // See https://wxt.dev/api/config.html
@@ -6,4 +7,11 @@ export default defineConfig({
     permissions: ['storage', 'contextMenus'],
   },
   modules: ['@wxt-dev/module-react'],
+  vite: () => ({
+    resolve: {
+      alias: {
+        "@": path.resolve(__dirname, "./"),
+      },
+    },
+  })
 });
