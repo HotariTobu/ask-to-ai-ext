@@ -1,3 +1,7 @@
+import { createGoogleGenerativeAI } from "@ai-sdk/google";
+import { streamText } from "ai";
+import { apiKeyItem } from "./popup/storageItems";
+
 export default defineContentScript({
   matches: ['<all_urls>'],
   main() {
@@ -16,6 +20,25 @@ const addMessageReceiver = () => {
       return
     }
 
-    console.log(selection)
+    const text = selection.toString()
+    streamAnswer(text)
   })
+}
+
+const streamAnswer = async (text: string) => {
+  const apiKey = await apiKeyItem.getValue()
+  const provider = createGoogleGenerativeAI({
+    apiKey,
+  })
+
+  const model = provider('models/gemini-pro')
+
+  const { textStream } = await streamText({
+    model,
+    prompt: text,
+  })
+
+  for await (const textPart of textStream) {
+    console.log(textPart);
+  }
 }
