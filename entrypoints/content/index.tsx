@@ -45,8 +45,6 @@ const mountOverlay = (range: Range) => {
     rangeRect.height,
   ))
 
-  console.log(overlayRects)
-
   ReactDOM.createRoot(container).render(
     <Overlay rects={overlayRects} />
   )
