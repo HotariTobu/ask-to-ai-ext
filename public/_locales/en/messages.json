@@ -1,8 +1,29 @@
 {
-  "api_key_form_header_label": {
+  "default_prompt_template": {
+    "message": "What is '$$text'?"
+  },
+  "prompt_template_form_header_label": {
+    "message": "Prompt Template"
+  },
+  "provider_form_header_label": {
     "message": "API Keys"
+  },
+  "model_form_header_label": {
+    "message": "Model"
+  },
+  "model_form_model_id_header_label": {
+    "message": "Model ID"
+  },
+  "model_form_provider_header_label": {
+    "message": "Provider"
+  },
+  "model_form_display_name_header_label": {
+    "message": "Display Name"
   },
   "save_button_label": {
     "message": "Save"
+  },
+  "save_success_message": {
+    "message": "Saved!"
   }
 }

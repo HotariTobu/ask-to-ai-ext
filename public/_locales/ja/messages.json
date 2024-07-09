@@ -1,8 +1,29 @@
 {
-  "api_key_form_header_label": {
+  "default_prompt_template": {
+    "message": "「$$text」とは何ですか？"
+  },
+  "prompt_template_form_header_label": {
+    "message": "プロンプトテンプレート"
+  },
+  "provider_form_header_label": {
     "message": "APIキー"
+  },
+  "model_form_header_label": {
+    "message": "モデル"
+  },
+  "model_form_model_id_header_label": {
+    "message": "モデルID"
+  },
+  "model_form_provider_header_label": {
+    "message": "プロバイダ"
+  },
+  "model_form_display_name_header_label": {
+    "message": "表示名"
   },
   "save_button_label": {
     "message": "保存"
+  },
+  "save_success_message": {
+    "message": "保存されました！"
   }
 }
