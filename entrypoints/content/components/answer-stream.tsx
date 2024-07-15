@@ -21,6 +21,7 @@ export const AnswerStream = (props: {
 
   return (
     <Markdown
+      className="prose"
       components={{
         code(props) {
           const { children, className, node, ref, style, ...rest } = props
