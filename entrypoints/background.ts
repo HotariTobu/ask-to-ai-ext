@@ -1,10 +1,14 @@
 import { Menus, Runtime, Tabs } from "wxt/browser";
 
 export default defineBackground(() => {
+  browser.action.onClicked.addListener(openOptionsPage)
   browser.runtime.onMessage.addListener(handleMessage)
   browser.runtime.onInstalled.addListener(addAskContextMenu)
   browser.contextMenus.onClicked.addListener(handleContextMenuClick)
 });
+
+const openOptionsPage = () =>
+  browser.runtime.openOptionsPage()
 
 export type Message = {
   action: 'open-options-page'
@@ -17,7 +21,7 @@ const handleMessage = async (message: Message, sender: Runtime.MessageSender) =>
 
   switch (message.action) {
     case 'open-options-page':
-      await browser.runtime.openOptionsPage()
+      await openOptionsPage()
       break
   }
 }
