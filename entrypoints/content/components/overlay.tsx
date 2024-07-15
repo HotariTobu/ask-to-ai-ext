@@ -35,7 +35,7 @@ export const Overlay = (props: {
               </div>
             </div>
           </PopoverTrigger>
-          <PopoverContent className='w-[80vw]'>
+          <PopoverContent className='w-fit'>
             {props.children}
           </PopoverContent>
         </Popover>
