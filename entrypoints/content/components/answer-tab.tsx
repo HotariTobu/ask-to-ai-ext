@@ -1,7 +1,7 @@
 import { AnswerResult } from "../hooks/useAnswerItems"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { ExclamationTriangleIcon } from '@radix-ui/react-icons';
-import { AnswerStream } from "./answer-stream";
+import { AnswerBody } from "./answer-body";
 
 export const AnswerTab = (props: {
   result: AnswerResult
@@ -27,6 +27,6 @@ export const AnswerTab = (props: {
   }
 
   return (
-    <AnswerStream stream={result} />
+    <AnswerBody stream={result} />
   )
 }

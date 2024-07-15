@@ -1,19 +1,22 @@
 import Markdown from 'react-markdown'
 import { Prism } from 'react-syntax-highlighter'
+import { AnswerStream } from '../hooks/useAnswerItems'
 
-export const AnswerStream = (props: {
-  stream: AsyncIterable<string> | string
+export const AnswerBody = (props: {
+  stream: AnswerStream
 }) => {
   const [answer, setAnswer] = useState('')
 
   useEffect(() => {
-    if (typeof props.stream === 'string') {
-      setAnswer(props.stream)
+    const { text, textStream } = props.stream
+    text.then(setAnswer)
+
+    if (typeof textStream === 'undefined') {
       return
     }
 
     (async () => {
-      for await (const answerPart of props.stream) {
+      for await (const answerPart of textStream) {
         setAnswer(prevAnswer => prevAnswer + answerPart)
       }
     })()

@@ -5,7 +5,11 @@ import { streamText } from 'ai'
 
 const answers = new Map<string, Promise<string>>()
 
-export type AnswerResult = Promise<AsyncIterable<string> | string | Error>
+export type AnswerStream = {
+  text: Promise<string>
+  textStream?: AsyncIterable<string> | undefined
+}
+export type AnswerResult = Promise<AnswerStream | Error>
 
 type AnswerItem = {
   id: string
@@ -39,7 +43,9 @@ export const useAnswerItems = (text: string) => {
 
         const cache = answers.get(answerKey)
         if (typeof cache !== 'undefined') {
-          return cache
+          return {
+            text: cache,
+          }
         }
 
         const apiKey = apiKeyMap.get(providerId)
@@ -58,7 +64,10 @@ export const useAnswerItems = (text: string) => {
 
           answers.set(answerKey, text)
 
-          return textStream
+          return {
+            text,
+            textStream,
+          }
         } catch (error) {
           if (error instanceof Error) {
             return error
