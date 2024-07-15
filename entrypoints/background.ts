@@ -30,7 +30,7 @@ const addAskContextMenu = () => {
   browser.contextMenus.create({
     id: 'ask-to-ai',
     contexts: ['selection'],
-    title: 'Ask to AI'
+    title: t('ask_to_ai'),
   })
 }
 

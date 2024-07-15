@@ -1,4 +1,7 @@
 {
+  "ask_to_ai": {
+    "message": "Ask to AI"
+  },
   "default_prompt_template": {
     "message": "What is '$$text'?"
   },

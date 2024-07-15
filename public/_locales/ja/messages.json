@@ -1,4 +1,7 @@
 {
+  "ask_to_ai": {
+    "message": "AIに尋ねる"
+  },
   "default_prompt_template": {
     "message": "「$$text」とは何ですか？"
   },
