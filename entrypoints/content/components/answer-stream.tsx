@@ -7,6 +7,11 @@ export const AnswerStream = (props: {
   const [answer, setAnswer] = useState('')
 
   useEffect(() => {
+    if (typeof props.stream === 'string') {
+      setAnswer(props.stream)
+      return
+    }
+
     (async () => {
       for await (const answerPart of props.stream) {
         setAnswer(prevAnswer => prevAnswer + answerPart)
