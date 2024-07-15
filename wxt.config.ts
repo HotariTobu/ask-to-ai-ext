@@ -7,6 +7,15 @@ export default defineConfig({
     permissions: ['storage', 'contextMenus'],
     default_locale: 'en',
     action: {},
+    commands: {
+      "ask-to-ai": {
+        "suggested_key": {
+          "default": "Ctrl+Q",
+          "mac": "MacCtrl+Q",
+        },
+        "description": "Run `Ask to AI` command with current selected range."
+      }
+    },
   },
   modules: ['@wxt-dev/module-react'],
   vite: () => ({

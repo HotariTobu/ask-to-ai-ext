@@ -5,6 +5,7 @@ export default defineBackground(() => {
   browser.runtime.onMessage.addListener(handleMessage)
   browser.runtime.onInstalled.addListener(addAskContextMenu)
   browser.contextMenus.onClicked.addListener(handleContextMenuClick)
+  browser.commands.onCommand.addListener(askToAI)
 });
 
 const openOptionsPage = () =>
@@ -34,9 +35,19 @@ const addAskContextMenu = () => {
   })
 }
 
-const handleContextMenuClick = async (info: Menus.OnClickData, tab: Tabs.Tab | undefined) => {
+const handleContextMenuClick = async (_: Menus.OnClickData, tab: Tabs.Tab | undefined) => {
+  await askToAI()
+}
+
+const askToAI = async () => {
+  const tabs = await browser.tabs.query({
+    active: true,
+    currentWindow: true,
+  })
+
+  const tab = tabs.at(0)
   if (typeof tab?.id === 'undefined') {
     return
   }
-  await browser.tabs.sendMessage(tab.id, info)
+  await browser.tabs.sendMessage(tab.id, null)
 }

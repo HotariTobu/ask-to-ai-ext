@@ -2,28 +2,27 @@ import '@/index.css'
 import ReactDOM from "react-dom/client";
 import { Overlay } from './components/overlay';
 import { AnswerPanel } from './components/answer-panel';
+import { Runtime } from 'wxt/browser';
 
 export default defineContentScript({
   matches: ['<all_urls>'],
   main() {
-    addMessageReceiver()
+    browser.runtime.onMessage.addListener(handleMessage)
   },
 });
 
-const addMessageReceiver = () => {
-  browser.runtime.onMessage.addListener(async (_, sender) => {
-    if (browser.runtime.id !== sender.id) {
-      return
-    }
+const handleMessage = async (_: unknown, sender: Runtime.MessageSender) => {
+  if (browser.runtime.id !== sender.id) {
+    return
+  }
 
-    const selection = document.getSelection()
-    if (selection === null || selection.isCollapsed) {
-      return
-    }
+  const selection = document.getSelection()
+  if (selection === null || selection.isCollapsed) {
+    return
+  }
 
-    const range = selection.getRangeAt(0)
-    mountOverlay(range)
-  })
+  const range = selection.getRangeAt(0)
+  mountOverlay(range)
 }
 
 const mountOverlay = (range: Range) => {
