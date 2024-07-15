@@ -1,9 +1,9 @@
 import { Button } from "@/components/ui/button";
 import { t } from "@/utils/i18n";
-import { useSubmitTrigger } from "./events/submitEvent";
-import { PromptTemplateForm } from "./components/prompt-template-form";
-import { ProviderForm } from "./components/provider-form";
-import { ModelForm } from "./components/model-form";
+import { useSubmitTrigger } from "../events/submitEvent";
+import { PromptTemplateForm } from "./prompt-template-form";
+import { ProviderForm } from "./provider-form";
+import { ModelForm } from "./model-form";
 import { toast } from "sonner";
 
 export const Options = () => {
