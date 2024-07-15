@@ -1,6 +1,7 @@
 import '@/index.css'
 import ReactDOM from "react-dom/client";
-import { Overlay } from "./overlay";
+import { Overlay } from './components/overlay';
+import { AnswerPanel } from './components/answer-panel';
 
 export default defineContentScript({
   matches: ['<all_urls>'],
@@ -46,7 +47,9 @@ const mountOverlay = (range: Range) => {
   ))
 
   ReactDOM.createRoot(container).render(
-    <Overlay rects={overlayRects} />
+    <Overlay rects={overlayRects}>
+      <AnswerPanel text={range.toString()} />
+    </Overlay>
   )
 }
 
