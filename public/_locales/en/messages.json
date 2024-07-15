@@ -25,5 +25,9 @@
   },
   "save_success_message": {
     "message": "Saved!"
+  },
+
+  "navigate_to_options_page_for_model_config": {
+    "message": "Open the options page and enable some model"
   }
 }

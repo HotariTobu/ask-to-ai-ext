@@ -25,5 +25,9 @@
   },
   "save_success_message": {
     "message": "保存されました！"
+  },
+
+  "navigate_to_options_page_for_model_config": {
+    "message": "オプションページを開いて何らかのモデルを有効にしてください"
   }
 }
