@@ -1,6 +1,6 @@
 {
-  "name": "wxt-starter",
-  "description": "manifest.json description",
+  "name": "ask-to-ai-ext",
+  "description": "Ask to AI about selected texts.",
   "private": true,
   "version": "0.0.0",
   "type": "module",
